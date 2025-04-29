@@ -10,7 +10,7 @@ import Alert from "@mui/material/Alert";
 // import lodding animation
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
-export default function GamesPage({ Promise }) {
+export default function GamesPage() {
   const { name } = useParams();
 
   const [loading, setLoading] = useState(false);
@@ -57,12 +57,14 @@ export default function GamesPage({ Promise }) {
 
   function showGame() {
     const curentGame = getGame(games, name);
+
     if (curentGame != undefined) {
       return <>{pageContent(curentGame)}</>;
     }
     return (
       <div>
         <p>{error}</p>
+        <p>{name}</p>
         <p>heloooooooooooooooooooooooooooooooooooooooooo</p>
       </div>
     );

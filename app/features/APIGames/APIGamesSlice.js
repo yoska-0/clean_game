@@ -25,7 +25,10 @@ export const fetchGamesAPI = createAsyncThunk(
 
 export function getGame(state, name) {
   if (Array.isArray(state) && state.length > 0) {
-    return state.find((game) => game.name.toLowerCase() == name.toLowerCase());
+    return state.find(
+      (game) =>
+        game.name.toLowerCase() == decodeURIComponent(name.toLowerCase())
+    );
   }
 }
 
