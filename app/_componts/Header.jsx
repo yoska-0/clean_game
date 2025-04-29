@@ -36,7 +36,7 @@ export default function Header() {
       <div className="relative z-10 flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold text-center">
           {" "}
-          قوله تعالى: {"{"}وَذَرِ الَّذِينَ اتَّخَذُوا دِينَهُمْ لَعِبًا
+          قال تعالى: {"{"}وَذَرِ الَّذِينَ اتَّخَذُوا دِينَهُمْ لَعِبًا
           وَلَهْوًا وَغَرَّتْهُمُ الْحَيَاةُ الدُّنْيَا الدنيا
           {"}"}{" "}
         </h1>
