@@ -71,16 +71,16 @@ export default function GamesPage() {
   }
 
   function rateContent(rateNum) {
-    switch (rateNum) {
+    switch (true) {
       case rateNum <= 10 && rateNum >= 7:
         return "كثير جدا";
       case rateNum < 7 && rateNum >= 5:
         return "كتير";
       case rateNum < 5 && rateNum >= 3:
         return "متوسط";
-      case 2:
+      case rateNum == 2:
         return "قليل";
-      case 1:
+      case rateNum == 1:
         return "قليل جدا";
       default:
         return "لا يوجد";
