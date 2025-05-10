@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//import fuse js to imporove search
+import Fuse from "fuse.js";
+
 const initialState = {
   status: "idle",
   data: [],
@@ -25,10 +28,12 @@ export const fetchGamesAPI = createAsyncThunk(
 
 export function getGame(state, name) {
   if (Array.isArray(state) && state.length > 0) {
-    return state.find(
-      (game) =>
-        game.name.toLowerCase() == decodeURIComponent(name.toLowerCase())
-    );
+    const fuse = new Fuse(state, {
+      keys: ["name"],
+      threshold: 0.4,
+    });
+    const result = fuse.search(decodeURIComponent(name.toLowerCase()));
+    return result.length > 0 ? result[0].item : undefined;
   }
 }
 

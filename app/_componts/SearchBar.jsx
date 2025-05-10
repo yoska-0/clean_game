@@ -11,12 +11,12 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="flex items-center justify-between w-1/2 bg-violet-100 mt-5  rounded-lg p-3">
+    <div className="flex items-center justify-between w-1/2 bg-[#efefef] mt-5  rounded-lg p-3">
       <input
         value={search}
         type="search"
         placeholder="بحث"
-        className="seatchBar   text-black w-full bg-violet-100 focus:outline-none "
+        className="seatchBar text-black w-full bg-[#efefef] focus:outline-none"
         onChange={(e) => setSearch(e.target.value)}
         onKeyDown={(e) => {
           if (e.key == "Enter") {

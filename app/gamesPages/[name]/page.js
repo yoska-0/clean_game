@@ -4,6 +4,9 @@ import { useParams } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGamesAPI, getGame } from "../../features/APIGames/APIGamesSlice";
 
+//import componts
+import NotFound from "../../_componts/NotFound";
+
 // import from material-ui
 import Alert from "@mui/material/Alert";
 
@@ -61,13 +64,7 @@ export default function GamesPage() {
     if (curentGame != undefined) {
       return <>{pageContent(curentGame)}</>;
     }
-    return (
-      <div>
-        <p>{error}</p>
-        <p>{name}</p>
-        <p>heloooooooooooooooooooooooooooooooooooooooooo</p>
-      </div>
-    );
+    return <NotFound />;
   }
 
   function rateContent(rateNum) {
