@@ -21,20 +21,36 @@ function App() {
           يمكنك الإبلاغ عن أي خطأ في وصف اللعبة أو أي محتوى غير دقيق مذكور في
           تقييماتها.
         </p>
-        <Button
-          href="https://docs.google.com/forms/d/e/1FAIpQLSdP0zMZyi_ng1ZF5wzMnJETlE8JzAz3nGP7gFEaOgxgIt8-vQ/viewform?usp=dialog"
-          target="_blank"
-          variant="outlined"
-          className="headerSectionAnimation overflow-hidden"
-          sx={{
-            color: "var(--color-text)",
-            borderColor: "var(--color-text)",
-            fontSize: "24px",
-            padding: "0px 20px",
-          }}
-        >
-          تواصل معنا
-        </Button>
+        <div className="flex  items-center justify-around w-1/2">
+          <Button
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdP0zMZyi_ng1ZF5wzMnJETlE8JzAz3nGP7gFEaOgxgIt8-vQ/viewform?usp=dialog"
+            target="_blank"
+            variant="outlined"
+            className="headerSectionAnimation overflow-hidden"
+            sx={{
+              color: "var(--color-text)",
+              borderColor: "var(--color-text)",
+              fontSize: "24px",
+              padding: "0px 20px",
+            }}
+          >
+            تواصل معنا
+          </Button>
+          <Button
+            href=""
+            target="_blank"
+            variant="outlined"
+            className="headerSectionAnimation overflow-hidden"
+            sx={{
+              color: "var(--color-text)",
+              borderColor: "var(--color-text)",
+              fontSize: "24px",
+              padding: "0px 20px",
+            }}
+          >
+            أضف لعبة
+          </Button>
+        </div>
       </div>
       <div className="w-1/2 h-full max-md:hidden">
         <img
