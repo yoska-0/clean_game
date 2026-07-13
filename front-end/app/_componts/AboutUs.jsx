@@ -2,7 +2,7 @@ import AOSWrapper from "./AOSAnimaton";
 
 export default function AboutUs() {
   return (
-    <div id="about" className=" bg-[var(--main-background)] py-6 px-5">
+    <div id="aboutUs" className=" bg-[var(--main-background)] py-6 px-5">
       <h1 className="text-7xl text-[var(--color-text)]  p-1 my-5 m-auto w-fit text-center headerSectionAnimation">
         عن الموقع
       </h1>
