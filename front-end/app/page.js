@@ -1,4 +1,3 @@
-import NavBar from "./_componts/NavBar";
 import Header from "./_componts/Header";
 import AboutUs from "./_componts/AboutUs";
 import OurFeatures from "./_componts/OurFeatures";
