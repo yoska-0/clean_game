@@ -98,7 +98,7 @@ export default function CommentsForm({ setShowCommentForm, curentGame }) {
             }
             required
             placeholder="اكتب رأيك عن اللعبة..."
-            maxLength={300}
+            maxLength={700}
             className="
         w-full
         resize-none

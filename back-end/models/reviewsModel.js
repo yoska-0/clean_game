@@ -24,7 +24,7 @@ const reviewsSchema = new mongoose.Schema(
     comment: {
       type: String,
       trim: true,
-      maxlength: [300, "Comment must be less than 300 characters"],
+      maxlength: [700, "Comment must be less than 700 characters"],
     },
     game: {
       required: [true, "Game is required"],
