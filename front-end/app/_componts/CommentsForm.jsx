@@ -189,7 +189,7 @@ export default function CommentsForm({ setShowCommentForm, curentGame }) {
 
           <div className="space-y-2">
             <label className="block text-sm font-medium text-zinc-300">
-              الإباحية
+              التعري
             </label>
 
             <input

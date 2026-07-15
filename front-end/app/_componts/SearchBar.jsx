@@ -57,7 +57,7 @@ export default function SearchBar() {
                 <div
                   key={game._id}
                   onClick={() => eventSearch(game.name)}
-                  className="flex items-center gap-3 p-3 cursor-pointer text-left hover:bg-gray-200 transition"
+                  className="flex items-center gap-3 p-3 cursor-pointer hover:bg-gray-200 transition"
                 >
                   <span className="text-black font-medium">{game.name}</span>
                 </div>

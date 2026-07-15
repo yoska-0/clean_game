@@ -85,6 +85,22 @@ export default function GamesPage() {
                 <p>{comment.user.name}</p>
               </div>
               <p>{comment.comment}</p>
+              <div className="flex justify-between items-center mt-4">
+                <div className="flex flex-col items-center bg-[#334155] py-3 px-3 rounded-2xl min-w-24">
+                  <p>التعري</p>
+                  <p>{comment.nudity}/10</p>
+                </div>
+
+                <div className="flex flex-col items-center bg-[#334155] py-3 px-3 rounded-2xl min-w-24">
+                  <p>الشركيات</p>
+                  <p>{comment.beliefs}/10</p>
+                </div>
+
+                <div className="flex flex-col items-center bg-[#334155]  py-3 px-3 rounded-2xl min-w-24">
+                  <p>الشذوذ</p>
+                  <p>{comment.homosexuality}/10</p>
+                </div>
+              </div>
             </div>
           );
         })}
@@ -102,7 +118,10 @@ export default function GamesPage() {
 
   function pageContent(curentGame) {
     return (
-      <div key={curentGame._id} className="bg-[var(--bg-darkBlue)] p-5 mt-10">
+      <div
+        key={curentGame._id}
+        className="bg-[var(--bg-darkBlue)] p-5 md:mt-15 mt-17"
+      >
         <div className="flex items-center justify-between flex-col">
           <img
             src={curentGame.image}
