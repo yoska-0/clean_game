@@ -1,4 +1,4 @@
-import { Geist, Cairo } from "next/font/google";
+import { Geist, Tajawal } from "next/font/google";
 import "./globals.css";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
@@ -11,9 +11,10 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const cairo = Cairo({
-  variable: "--font-cairo",
+const TajawalFont = Tajawal({
+  variable: "--font-Tajawal",
   subsets: ["arabic"],
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -24,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar">
-      <body className={`${geistSans.variable} ${cairo.variable}`}>
+      <body className={`${geistSans.variable} ${TajawalFont.variable}`}>
         <NavBar></NavBar>
         {children}
         <Footer />

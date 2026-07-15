@@ -7,6 +7,13 @@ const getGame = async (name) => {
   return res.data.data;
 };
 
+const getSearchGames = async (name, limit) => {
+  const res = await axios.get(
+    `${process.env.NEXT_PUBLIC_MAIN_BACKEND_URL}/api/v1/games/search?name=${name.toLowerCase()}&limit=${limit}`,
+  );
+  return res.data.data;
+};
+
 const signUp = async (information) => {
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_MAIN_BACKEND_URL}/api/v1/auth/signup`,
@@ -101,6 +108,7 @@ const createRivew = async (information) => {
 
 export default {
   getGame,
+  getSearchGames,
   signUp,
   logIn,
   forgetPassword,

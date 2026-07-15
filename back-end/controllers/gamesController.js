@@ -68,4 +68,24 @@ const updateGame = factroController.updateOne(Game);
 
 const deleteGame = factroController.deleteOne(Game);
 
-export default { createGame, getGames, getOneGame, updateGame, deleteGame };
+// search games
+const searchGames = factroController.getAll(Game);
+
+// filter to get games by part of name
+const filterGamesSearch = (req, res, next) => {
+  let filterObj = {};
+  if (req.query.name)
+    filterObj = { name: { $regex: `^${req.query.name}`, $options: "i" } };
+  req.filterObj = filterObj;
+  next();
+};
+
+export default {
+  createGame,
+  getGames,
+  getOneGame,
+  updateGame,
+  deleteGame,
+  searchGames,
+  filterGamesSearch,
+};

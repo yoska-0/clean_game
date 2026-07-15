@@ -20,5 +20,10 @@ gamesRouter
 //   .get("/:id", gamesController.getOneGame)
 //   .patch("/:id", gamesController.updateGame)
 //   .delete("/:id", gamesController.deleteGame);
+gamesRouter.get(
+  "/search",
+  gamesController.filterGamesSearch,
+  gamesController.searchGames,
+);
 
 export default gamesRouter;

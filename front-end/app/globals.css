@@ -34,14 +34,14 @@
   scroll-behavior: smooth;
 }
 
-body {
-  color: var(--foreground);
-  font-family: var(--font-cairo), sans-serif;
-  direction: rtl;
+.font-arabic {
+  font-family: var(--font-Tajawal);
 }
 
-.font-arabic {
-  font-family: var(--font-cairo);
+body {
+  color: var(--foreground);
+  font-family: var(--font-Tajawal), sans-serif;
+  direction: rtl;
 }
 
 /* navebar */
@@ -60,6 +60,7 @@ input::-webkit-search-cancel-button {
 .headerSectionAnimation {
   position: relative;
   overflow: hidden;
+  padding: 10px 2px;
 }
 .headerSectionAnimation::after,
 .headerSectionAnimation::before {
