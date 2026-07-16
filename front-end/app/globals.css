@@ -14,6 +14,7 @@
   --bg-darkBlue-transparent: #075a8162;
   --bg-blue: #1e2939;
   --blue: #1c398e;
+  color-scheme: light;
 }
 
 @theme inline {

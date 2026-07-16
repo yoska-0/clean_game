@@ -21,9 +21,6 @@ export const metadata = {
   title: "Clean Game",
   description:
     "منصة تساعدك على معرفة مدى توافق الألعاب مع القيم الإسلامية من خلال تقييمات وآراء المجتمع.",
-  other: {
-    "color-scheme": "light",
-  },
 };
 
 export default function RootLayout({ children }) {
