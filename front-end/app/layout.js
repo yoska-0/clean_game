@@ -24,7 +24,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar">
+    <html lang="ar" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${TajawalFont.variable}`}>
         <NavBar></NavBar>
         {children}

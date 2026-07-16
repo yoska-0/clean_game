@@ -37,7 +37,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen absolute bg-white">
       <div className="border-zinc-300 border-2 p-10 mb-20">
-        <h2 className="text-4xl mb-10 font-mono">Clean Game</h2>
+        <h2 className="text-4xl mb-10">Clean Game</h2>
         <form className="flex flex-col" dir="ltr" onSubmit={handelSubmit}>
           <label htmlFor="name">Name:</label>
           <input
