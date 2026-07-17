@@ -81,6 +81,7 @@ const signUp = asyncHandler(async (req, res, next) => {
     });
   } catch (error) {
     await pandingUser.deleteOne();
+    console.log(error);
     return next(new AppError("فشل أرسال الكود ", 500));
   }
 
