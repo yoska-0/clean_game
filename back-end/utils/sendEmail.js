@@ -1,25 +1,30 @@
-import nodemailer from "nodemailer";
+import axios from "axios";
 
-// Create a transporter using SMTP
 const sendEmail = async (options) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.SMTP_EMAIL,
-      pass: process.env.SMTP_EMAIL_PASSWORD,
+  const res = await axios.post(
+    `https://api.brevo.com/v3/smtp/email`,
+    {
+      sender: {
+        name: "Clean Games",
+        email: process.env.EMAIL,
+      },
+      to: [
+        {
+          email: options.email,
+        },
+      ],
+      subject: options.subject,
+      textContent: options.message,
     },
-  });
-
-  const mailOptions = {
-    from: `Clean Games <${process.env.EMAIL}>`,
-    to: options.email,
-    subject: options.subject,
-    text: options.message,
-  };
-
-  await transporter.sendMail(mailOptions);
+    {
+      headers: {
+        accept: "application/json",
+        "api-key": process.env.BREVO_API_KEY,
+        "Content-Type": "application/json",
+      },
+    },
+  );
+  return res.data;
 };
 
 export default sendEmail;
