@@ -27,7 +27,7 @@ export default function LoginPage() {
       window.location.href = "/confirmEmail";
     } catch (error) {
       setError(
-        error.response?.data?.errors[0].msg ||
+        error.response?.data?.errors?.[0].msg ||
           error.response?.data?.message ||
           "Something went wrong",
       );

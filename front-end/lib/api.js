@@ -91,7 +91,6 @@ const bringComments = async (id, limit) => {
 const createRivew = async (information) => {
   const token = localStorage.getItem("token");
   let headers = {};
-  console.log("fhdjkfhjkdshfjkdshfjkdshfjkds", localStorage.getItem("token"));
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }

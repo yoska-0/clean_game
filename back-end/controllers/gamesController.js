@@ -75,7 +75,7 @@ const searchGames = factroController.getAll(Game);
 const filterGamesSearch = (req, res, next) => {
   let filterObj = {};
   if (req.query.name)
-    filterObj = { name: { $regex: `^${req.query.name}`, $options: "i" } };
+    filterObj = { name: { $regex: `${req.query.name}`, $options: "i" } };
   req.filterObj = filterObj;
   next();
 };

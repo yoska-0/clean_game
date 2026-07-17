@@ -23,7 +23,6 @@ export default function SearchBar() {
       }
 
       const games = await apiFutrues.getSearchGames(debouncedValue, 5);
-      console.log(games.data);
       setGamesSearch(games.data);
     };
 
