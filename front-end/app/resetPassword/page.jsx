@@ -6,7 +6,7 @@ import { TailSpin } from "react-loader-spinner";
 
 export default function verifyResetCode() {
   const [formDate, setFormDate] = useState({
-    email: sessionStorage.getItem("email"),
+    email: "",
     newPassword: "",
   });
   const [error, setError] = useState("");
@@ -19,7 +19,11 @@ export default function verifyResetCode() {
     e.preventDefault();
     setLoading(true);
     try {
-      await apiFutrues.resetPassword(formDate);
+      const data = {
+        ...formDate,
+        email: sessionStorage.getItem("email") || "",
+      };
+      await apiFutrues.resetPassword(data);
       setError("");
       sessionStorage.removeItem("email");
       window.location.href = "/login";
