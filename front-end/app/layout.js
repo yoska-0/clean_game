@@ -18,9 +18,30 @@ const TajawalFont = Tajawal({
 });
 
 export const metadata = {
-  title: "Clean Game",
+  title: {
+    default: "Clean Game",
+    template: "%s | Clean Game",
+  },
+
   description:
     "منصة تساعدك على معرفة مدى توافق الألعاب مع القيم الإسلامية من خلال تقييمات وآراء المجتمع.",
+
+  keywords: [
+    "Clean Game",
+    "Game Rating",
+    "Islamic Games",
+    "Halal Games",
+    "تقييم الألعاب",
+    "الألعاب الحلال",
+    "تقيم الالعاب الالكترونية",
+  ],
+
+  applicationName: "Clean Game",
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {

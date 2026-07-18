@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import apiFutrues from "../../lib/api.js";
 import ErrorMassege from "../_componts/ErrorMassege.jsx";
+import { TailSpin } from "react-loader-spinner";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function LoginPage() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +21,7 @@ export default function LoginPage() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const data = await apiFutrues.logIn(formData);
       setError("");
@@ -30,6 +33,8 @@ export default function LoginPage() {
           error.response?.data?.message ||
           "Something went wrong",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,7 +68,6 @@ export default function LoginPage() {
           {/* forgatPassword */}
           <Link
             href="/forgetPassword"
-            passHref
             className="mt-3 mx-auto underline text-blue-600"
           >
             forget password
@@ -71,9 +75,28 @@ export default function LoginPage() {
           {/* forgatPassword */}
           <button
             type="submit"
-            className="mt-7 cursor-pointer rounded-md bg-[var(--bg-blue)] py-2 text-white"
+            className={`mt-7 rounded-md bg-[var(--bg-blue)] py-2 text-white  
+              flex justify-center items-center 
+              ${
+                loading
+                  ? "opacity-50 cursor-not-allowed"
+                  : "opacity-100 cursor-pointer"
+              }`}
           >
-            log in
+            {loading ? (
+              <TailSpin
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "log in"
+            )}
           </button>
         </form>
       </div>

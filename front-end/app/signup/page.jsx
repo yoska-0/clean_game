@@ -3,6 +3,7 @@
 import { useState } from "react";
 import apiFutrues from "../../lib/api.js";
 import ErrorMassege from "../_componts/ErrorMassege.jsx";
+import { TailSpin } from "react-loader-spinner";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ export default function LoginPage() {
     passwordConfirm: "",
   });
 
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -19,6 +21,7 @@ export default function LoginPage() {
   };
 
   const handelSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const data = await apiFutrues.signUp(formData);
@@ -31,6 +34,8 @@ export default function LoginPage() {
           error.response?.data?.message ||
           "Something went wrong",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -83,9 +88,30 @@ export default function LoginPage() {
           />
           <button
             type="submit"
-            className="mt-7 cursor-pointer rounded-md bg-[var(--bg-blue)] py-2 text-white"
+            disabled={loading}
+            className={`mt-7
+               rounded-md bg-[var(--bg-blue)] py-2 text-white 
+              flex justify-center items-center
+              ${
+                loading
+                  ? "opacity-50 cursor-not-allowed"
+                  : "opacity-100 cursor-pointer"
+              }`}
           >
-            Sign up
+            {loading ? (
+              <TailSpin
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Sign up"
+            )}
           </button>
         </form>
       </div>

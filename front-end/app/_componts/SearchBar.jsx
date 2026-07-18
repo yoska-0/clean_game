@@ -30,7 +30,7 @@ export default function SearchBar() {
   }, [debouncedValue]);
 
   return (
-    <div className="relative w-1/2 mt-5">
+    <div className="relative mt-5">
       <div className="flex items-center  justify-between w-full bg-[#efefef] mt-5  rounded-lg p-3">
         <input
           value={search}

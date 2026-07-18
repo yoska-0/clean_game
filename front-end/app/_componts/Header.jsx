@@ -1,49 +1,50 @@
 "use client";
 
-import { motion } from "motion/react";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
 // import commponts
 import SearchBar from "./SearchBar";
+
+const AnimationBackGround = dynamic(() => import("./AnimationBackGround"), {
+  ssr: false,
+});
 
 export default function Header() {
   return (
     <div
       id="home"
-      className="text-white bg-[var(--bg-darkBlue)] relative   h-[100vh] flex justify-center items-center "
+      className="text-white bg-[var(--bg-darkBlue)] relative  py-8 px-10
+       h-[100vh] flex justify-center items-center "
     >
-      {/* animation background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full   bg-[var(--bg-darkBlue-transparent)]"
-            style={{
-              boxShadow: "0 0 20px rgba(50, 50, 50, 0.5)",
-              width: `${Math.random() * 200 + 50}px`,
-              height: `${Math.random() * 200 + 50}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: Math.random() * 2 + 15,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          ></motion.div>
-        ))}
-      </div>
-      <div className="relative z-10 flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-center">
-          {" "}
-          قال تعالى: {"{"}وَذَرِ الَّذِينَ اتَّخَذُوا دِينَهُمْ لَعِبًا
-          وَلَهْوًا وَغَرَّتْهُمُ الْحَيَاةُ الدُّنْيَا
-          {"}"}{" "}
+      <AnimationBackGround />
+      <div className="relative z-10 flex max-w-5xl flex-col items-center text-center">
+        <Image
+          src="/photos/logo.png"
+          alt="Clean Game Logo"
+          priority
+          width={280}
+          height={280}
+          className="mb-1 drop-shadow-2xl"
+        />
+
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-wide mb-4">
+          Clean Game
         </h1>
-        <SearchBar />
+
+        <h2 className="max-w-4xl text-xl md:text-3xl leading-relaxed text-green-300 font-semibold mb-6">
+          ﴿ وَذَرِ الَّذِينَ اتَّخَذُوا دِينَهُمْ لَعِبًا وَلَهْوًا
+          وَغَرَّتْهُمُ الْحَيَاةُ الدُّنْيَا ﴾
+        </h2>
+
+        <p className="max-w-3xl text-lg md:text-xl text-gray-300 leading-8 mb-8">
+          منصة تساعد اللاعبين على التعرف على محتوى الألعاب من خلال تقييمات
+          المجتمع، لاتخاذ قرارات واعية قبل اللعب.
+        </p>
+
+        <div className="w-full mx-auto max-w-2xl">
+          <SearchBar />
+        </div>
       </div>
     </div>
   );

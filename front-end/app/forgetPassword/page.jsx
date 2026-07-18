@@ -2,12 +2,16 @@
 
 import { useState } from "react";
 import apiFutrues from "../../lib/api.js";
+import { TailSpin } from "react-loader-spinner";
 
 export default function forgetPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handelSubmit = async () => {
+    setLoading(true);
+    sessionStorage.setItem("email", email);
     try {
       await apiFutrues.forgetPassword(email);
       setError("");
@@ -18,6 +22,8 @@ export default function forgetPassword() {
           error.response?.data?.message ||
           "Something went wrong",
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,10 +42,29 @@ export default function forgetPassword() {
             onChange={(e) => setEmail(e.target.value)}
           ></input>
           <button
-            className="mt-7 cursor-pointer rounded-md bg-[var(--bg-blue)] py-2 text-white"
+            className={`mt-7 rounded-md bg-[var(--bg-blue)] py-2 text-white
+              flex justify-center items-center
+                    ${
+                      loading
+                        ? "opacity-50 cursor-not-allowed"
+                        : "opacity-100 cursor-pointer"
+                    }`}
             onClick={() => handelSubmit()}
           >
-            Send code
+            {loading ? (
+              <TailSpin
+                height="20"
+                width="20"
+                color="#fff"
+                ariaLabel="tail-spin-loading"
+                radius="1"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+              />
+            ) : (
+              "Send code"
+            )}
           </button>
         </div>
       </div>
