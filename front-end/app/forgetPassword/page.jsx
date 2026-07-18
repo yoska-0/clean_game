@@ -11,10 +11,10 @@ export default function forgetPassword() {
 
   const handelSubmit = async () => {
     setLoading(true);
-    sessionStorage.setItem("email", email);
     try {
       await apiFutrues.forgetPassword(email);
       setError("");
+      sessionStorage.setItem("email", email);
       window.location.href = "/verifyResetCode";
     } catch (error) {
       setError(
