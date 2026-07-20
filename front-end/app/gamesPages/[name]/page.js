@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import NotFound from "../../_componts/NotFound";
 import CommentsForm from "../../_componts/CommentsForm";
 import apiFutrues from "../../../lib/api";
+import DropdownMenuDestructive from "../../_componts/DropDownMenue";
 
 // import from material ui
 import LinearProgress from "@mui/material/LinearProgress";
@@ -19,6 +20,8 @@ export default function GamesPage() {
   const [curentGame, setCurentGame] = useState({});
   const [comments, setComment] = useState([]);
   const [showCommentForm, setShowCommentForm] = useState(false);
+
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchGame = async () => {
@@ -36,6 +39,18 @@ export default function GamesPage() {
     };
     fetchGame();
   }, [name, limit]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await apiFutrues.getLoggedUser();
+        setUser(data.data.data._id);
+      } catch (error) {
+        setUser(null);
+      }
+    };
+    fetchUser();
+  }, []);
 
   function showGame() {
     if (curentGame != undefined) {
@@ -75,16 +90,24 @@ export default function GamesPage() {
               key={comment._id}
               className="bg-[var(--bg-blue)] py-3.5 px-5 mb-5 rounded-2xl"
             >
-              <div className="flex items-center gap-3">
-                <div
-                  className=" rounded-full mb-2 flex items-center justify-center px-3.5 py-1.5 text-xl uppercase"
-                  style={{ background: getColor(comment.user.name[0]) }}
-                >
-                  {comment.user.name[0]}
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <div
+                      className=" rounded-full mb-2 flex items-center justify-center px-3.5 py-1.5 text-xl uppercase"
+                      style={{ background: getColor(comment.user.name[0]) }}
+                    >
+                      {comment.user.name[0]}
+                    </div>
+                    <p>{comment.user.name}</p>
+                  </div>
+                  <p>{comment.comment}</p>
                 </div>
-                <p>{comment.user.name}</p>
+                {comment.user._id == user && (
+                  <DropdownMenuDestructive title={"..."} review={comment} />
+                )}
               </div>
-              <p>{comment.comment}</p>
+
               <div className="flex justify-between items-center mt-4">
                 <div className="flex flex-col items-center bg-[#334155] py-3 px-3 rounded-2xl min-w-24">
                   <p>التعري</p>
@@ -209,6 +232,7 @@ export default function GamesPage() {
                   <CommentsForm
                     setShowCommentForm={setShowCommentForm}
                     curentGame={curentGame}
+                    userId={user}
                   />
                 </div>
               )}

@@ -4,41 +4,40 @@ import { useState } from "react";
 import apiFutrues from "../../lib/api";
 import { BsX } from "react-icons/bs";
 import ErrorMassege from "./ErrorMassege";
-export default function CommentsForm({ setShowCommentForm, curentGame }) {
+export default function CommentsForm(props) {
   const [formData, setFormData] = useState({
-    comment: "",
-    beliefs: null,
-    nudity: null,
-    homosexuality: null,
-    user: "",
-    game: "",
+    comment: props.review?.comment || "",
+    beliefs: props.review?.beliefs || null,
+    nudity: props.review?.nudity || null,
+    homosexuality: props.review?.homosexuality || null,
+    user: props.review?.user._id || "",
+    game: props.review?.game || "",
   });
 
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let data;
-    try {
-      data = await apiFutrues.getLoggedUser();
-    } catch (error) {
-      console.log(error);
-      setError(
-        error.response?.data?.errors?.[0]?.msg ||
-          error.response?.data?.message ||
-          "Something went wrong",
-      );
+
+    let finalReview;
+
+    if (!props.review) {
+      finalReview = {
+        ...formData,
+        user: props.userId,
+        game: props.curentGame._id,
+      };
     }
 
-    const finalReview = {
-      ...formData,
-      user: data.data.data._id,
-      game: curentGame._id,
-    };
-
     try {
-      await apiFutrues.createRivew(finalReview);
-      setShowCommentForm(false);
+      if (props.review) {
+        await apiFutrues.updateReview(props.review._id, formData);
+      } else {
+        await apiFutrues.createRivew(finalReview);
+      }
+      props.setShowCommentForm(false);
+      setError("");
+      location.reload();
     } catch (error) {
       setError(
         error.response?.data?.errors?.[0]?.msg ||
@@ -61,7 +60,7 @@ export default function CommentsForm({ setShowCommentForm, curentGame }) {
     <div className="bg-[var(--bg-blue)] rounded-2xl p-10 text-right relative">
       <button
         type="button"
-        onClick={() => setShowCommentForm(false)}
+        onClick={() => props.setShowCommentForm(false)}
         className="
         cursor-pointer
     absolute
@@ -234,7 +233,7 @@ export default function CommentsForm({ setShowCommentForm, curentGame }) {
       active:scale-95
     "
         >
-          إرسال التعليق
+          {props.review ? "تعديل التعليق" : " إرسال التعليق"}
         </button>
         {error && <ErrorMassege error={error} setError={setError} />}
       </form>

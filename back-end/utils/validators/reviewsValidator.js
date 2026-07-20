@@ -79,7 +79,7 @@ const updateReviewValidator = [
     .withMessage("معرف المستخدم غير صالح")
     .custom(async (userId, { req }) => {
       // check if user exists is the same user create review
-      const review = await Review.findById(userId);
+      const review = await Review.findById(req.params.id);
       if (review.user.toString() !== req.user._id.toString()) {
         throw new Error("غير مسموح لك بتعديل هذا التقييم");
       }

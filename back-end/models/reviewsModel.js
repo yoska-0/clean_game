@@ -73,6 +73,14 @@ reviewsSchema.post("save", async function () {
   await this.constructor.calcAverageRatings(this.game);
 });
 
+reviewsSchema.post("findOneAndDelete", async function (doc) {
+  if (doc) await doc.constructor.calcAverageRatings(doc.game);
+});
+
+reviewsSchema.post("findOneAndUpdate", async function (doc) {
+  if (doc) await doc.constructor.calcAverageRatings(doc.game);
+});
+
 reviewsSchema.index({ game: 1, user: 1 }, { unique: true });
 
 export default mongoose.model("Review", reviewsSchema);

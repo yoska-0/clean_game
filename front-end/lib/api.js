@@ -80,6 +80,7 @@ const getLoggedUser = async () => {
   return res.data;
 };
 
+// related to comments
 const bringComments = async (id, limit) => {
   const res = await axios.get(
     `
@@ -105,16 +106,49 @@ const createRivew = async (information) => {
   return res.data;
 };
 
+const deleteReview = async (id) => {
+  const token = localStorage.getItem("token");
+  let headers = {};
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const res = await axios.delete(
+    `${process.env.NEXT_PUBLIC_MAIN_BACKEND_URL}/api/v1/reviews/${id}`,
+    {
+      headers,
+    },
+  );
+  return res.data;
+};
+
+const updateReview = async (id, information) => {
+  const token = localStorage.getItem("token");
+  let headers = {};
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  const res = await axios.patch(
+    `${process.env.NEXT_PUBLIC_MAIN_BACKEND_URL}/api/v1/reviews/${id}`,
+    information,
+    {
+      headers,
+    },
+  );
+  return res.data;
+};
+
 export default {
   getGame,
   getSearchGames,
   signUp,
   logIn,
+  confirmEmail,
   forgetPassword,
   verifyResetCode,
   resetPassword,
-  bringComments,
   getLoggedUser,
+  bringComments,
   createRivew,
-  confirmEmail,
+  deleteReview,
+  updateReview,
 };
