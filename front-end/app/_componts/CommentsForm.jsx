@@ -45,15 +45,6 @@ export default function CommentsForm(props) {
           "Something went wrong",
       );
     }
-
-    setFormData({
-      comment: "",
-      beliefs: null,
-      nudity: null,
-      homosexuality: null,
-      user: "",
-      game: "",
-    });
   };
 
   return (
@@ -133,7 +124,6 @@ export default function CommentsForm(props) {
               }
               min={0}
               max={10}
-              step="0.5"
               className="
           w-full
           rounded-xl
@@ -169,7 +159,6 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
-              step="0.5"
               className="
           w-full
           rounded-xl
@@ -202,7 +191,6 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
-              step="0.5"
               className="
           w-full
           rounded-xl
