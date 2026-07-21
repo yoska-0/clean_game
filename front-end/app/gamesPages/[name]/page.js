@@ -110,7 +110,7 @@ export default function GamesPage() {
 
               <div className="flex justify-between items-center mt-4">
                 <div className="flex flex-col items-center bg-[#334155] py-3 px-3 rounded-2xl min-w-24">
-                  <p>التعري</p>
+                  <p>المحتوي الجنسي</p>
                   <p>{comment.nudity}/10</p>
                 </div>
 

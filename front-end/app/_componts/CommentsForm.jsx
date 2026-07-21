@@ -6,12 +6,12 @@ import { BsX } from "react-icons/bs";
 import ErrorMassege from "./ErrorMassege";
 export default function CommentsForm(props) {
   const [formData, setFormData] = useState({
-    comment: props.review?.comment || "",
-    beliefs: props.review?.beliefs || null,
-    nudity: props.review?.nudity || null,
-    homosexuality: props.review?.homosexuality || null,
-    user: props.review?.user._id || "",
-    game: props.review?.game || "",
+    comment: props.review?.comment ?? "",
+    beliefs: props.review?.beliefs ?? null,
+    nudity: props.review?.nudity ?? null,
+    homosexuality: props.review?.homosexuality ?? null,
+    user: props.review?.user._id ?? "",
+    game: props.review?.game ?? "",
   });
 
   const [error, setError] = useState("");
