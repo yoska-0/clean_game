@@ -3,8 +3,9 @@ import "./globals.css";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
 
 //import comoponentes
-import Footer from "./_componts/Footer";
 import NavBar from "./_componts/NavBar";
+import Footer from "./_componts/Footer";
+import AuthCheaker from "./_componts/AuthCheacker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" data-scroll-behavior="smooth">
       <body className={`${geistSans.variable} ${TajawalFont.variable}`}>
+        <AuthCheaker></AuthCheaker>
         <NavBar></NavBar>
         {children}
         <Footer />
