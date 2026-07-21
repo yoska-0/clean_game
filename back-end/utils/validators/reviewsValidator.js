@@ -7,7 +7,7 @@ const createReviewValidator = [
     .notEmpty()
     .withMessage("تقييم العري مطلوب")
     .isInt({ min: 0, max: 10 })
-    .withMessage("يجب أن تكون درجة العري بين 0 و10"),
+    .withMessage("يجب أن تكون درجة المحتوي الجنسي بين 0 و10"),
 
   check("beliefs")
     .notEmpty()
@@ -59,12 +59,24 @@ const createReviewValidator = [
 ];
 
 const updateReviewValidator = [
-  check("nudity").optional().isInt({ min: 0, max: 10 }),
+  check("nudity")
+    .optional()
+    .isInt({ min: 0, max: 10 })
+    .withMessage("يجب أن تكون درجة المحتوي الجنسي بين 0 و10"),
 
-  check("beliefs").optional().isInt({ min: 0, max: 10 }),
+  ,
+  check("beliefs")
+    .optional()
+    .isInt({ min: 0, max: 10 })
+    .withMessage("يجب أن تكون درجة المعتقدات بين 0 و10"),
 
-  check("homosexuality").optional().isInt({ min: 0, max: 10 }),
+  ,
+  check("homosexuality")
+    .optional()
+    .isInt({ min: 0, max: 10 })
+    .withMessage("يجب أن تكون درجة المثلية بين 0 و10"),
 
+  ,
   check("comment")
     .optional()
     .isLength({
