@@ -133,6 +133,7 @@ export default function CommentsForm(props) {
               }
               min={0}
               max={10}
+              step="any"
               className="
           w-full
           rounded-xl
@@ -168,6 +169,7 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
+              step="any"
               className="
           w-full
           rounded-xl
@@ -188,7 +190,7 @@ export default function CommentsForm(props) {
 
           <div className="space-y-2">
             <label className="block text-sm font-medium text-zinc-300">
-              التعري
+              المحتوي الجنسي
             </label>
 
             <input
@@ -200,6 +202,7 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
+              step="any"
               className="
           w-full
           rounded-xl

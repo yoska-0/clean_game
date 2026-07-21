@@ -160,7 +160,7 @@ export default function GamesPage() {
             {/* rating */}
             <div className="flex flex-col gap-4 mt-5 bg-[var(--bg-blue)] rounded-lg">
               <div className="p-5 bg-[var(--bg-blue)] rounded-lg border-gray-400">
-                <p className="text-right">التعري:</p>
+                <p className="text-right">المحتوي الجنسي:</p>
                 <div>
                   <div>{curentGame.averageNudity}/10</div>
                   <LinearProgress
