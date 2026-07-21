@@ -133,7 +133,7 @@ export default function CommentsForm(props) {
               }
               min={0}
               max={10}
-              step="any"
+              step="0.5"
               className="
           w-full
           rounded-xl
@@ -169,7 +169,7 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
-              step="any"
+              step="0.5"
               className="
           w-full
           rounded-xl
@@ -202,7 +202,7 @@ export default function CommentsForm(props) {
               required
               min={0}
               max={10}
-              step="any"
+              step="0.5"
               className="
           w-full
           rounded-xl
