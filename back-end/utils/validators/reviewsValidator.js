@@ -25,9 +25,9 @@ const createReviewValidator = [
     .notEmpty()
     .withMessage("التعليق مطلوب")
     .isLength({
-      max: 300,
+      max: 700,
     })
-    .withMessage("يجب ألا يزيد التعليق عن 300 حرف"),
+    .withMessage("يجب ألا يزيد التعليق عن 700 حرف"),
 
   check("game")
     .notEmpty()
