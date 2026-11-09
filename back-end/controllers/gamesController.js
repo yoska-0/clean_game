@@ -2,37 +2,54 @@ import factroController from "./factorController.js";
 import asyncHandler from "express-async-handler";
 import AppError from "../utils/appError.js";
 import Game from "../models/gamesModel.js";
+import axios from "axios";
 
 // TODO: Redis caching , search return list like (google search) , autocomplete
-const getGameFromRAWG = async (name) => {
+const getGameFromAPI = async (name) => {
   let searchGame;
   try {
-    searchGame = await fetch(
-      `https://api.rawg.io/api/games?search=${name}&key=${process.env.RAWG_API}`,
+    const response = await axios.get(
+      `https://api.rawg.io/api/games?search=${name}&key=${process.env.RAWG_API_KEY}`,
     );
+
+    searchGame = response.data.results?.[0];
   } catch (error) {
-    throw new AppError("Failed to connect to RAWG API", 500);
+    console.log(error);
   }
 
-  if (!searchGame.ok) {
-    throw new AppError("RAWG API error", 500);
+  // if no game found or thare an error
+  if (!searchGame) {
+    try {
+      const res = await axios.get("https://api.gamebrain.co/v1/games", {
+        params: { query: name },
+        headers: {
+          "x-api-key": process.env.GAMEBRAIN_API,
+        },
+      });
+
+      searchGame = res.data.results?.[0];
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  const searchGameData = await searchGame.json();
-
-  if (!searchGameData.results || searchGameData.results.length === 0) {
+  if (!searchGame) {
     throw new AppError("No game found with that name", 404);
   }
 
+  // 4. Normalize game data
+  const gameName = searchGame.name;
+  const gameImage = searchGame.background_image || searchGame.image;
+
   // be sure this game is not already in the database
   const game = await Game.findOne({
-    name: searchGameData.results[0].name.toLowerCase(),
+    name: gameName.toLowerCase(),
   });
 
   if (!game) {
     const newGame = await Game.create({
-      name: searchGameData.results[0].name,
-      image: searchGameData.results[0].background_image,
+      name: gameName,
+      image: gameImage,
     });
 
     return newGame;
@@ -51,7 +68,7 @@ const getGames = asyncHandler(async (req, res, next) => {
   let game = await Game.findOne({ name: name.toLowerCase() });
 
   if (!game) {
-    game = await getGameFromRAWG(name);
+    game = await getGameFromAPI(name);
   }
 
   res.status(200).json({
